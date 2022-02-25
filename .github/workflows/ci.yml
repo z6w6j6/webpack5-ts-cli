@@ -20,8 +20,8 @@ jobs:
    # 这里展示了如何执行多条命令
     - name: Install and Build
       run: |
-        cnpm install
-        cnpm run build
+        npm install
+        npm run build
     # 这里引用了别人写好的发布库，具体参数信息可以查阅上面的链接
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.0.0
