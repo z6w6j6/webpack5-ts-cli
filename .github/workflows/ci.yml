@@ -1,35 +1,43 @@
-# name 可以自定义
-name: CI
-# 指定触发workflow的条件
-# 下面的意思就是在监听到main分支push操作的时候运行
+name: Deploy
+
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - master
 
-# jobs 表示要执行的一项或者多项任务
 jobs:
-  # 任务名，可自定义
-  build-and-deploy:
-    # runs-on字段指定运行所需要的虚拟机环境。它是必填字段。目前可用的虚拟机如下。
+  push-to-gh-pages:
     runs-on: ubuntu-latest
-    # steps表示执行步骤
     steps:
-    # 检出代码，这里用了 actions/checkout@master 库来完成
-    - name: Checkout
-      uses: actions/checkout@master
-    # 使用node环境
-    - name: use Node.js 16
-    uses: actions/setup-node@v2.1.2
-    with:
-    node-version: '16.x'
-   # 这里展示了如何执行多条命令
-    - name: Install and Build
-      run: |
-        npm install
-        npm run build
-    # 这里引用了别人写好的发布库，具体参数信息可以查阅上面的链接
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.0.0
-      with: 
-        branch: gh-pages
-        folder: dist
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: use Node.js 16
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: '16.x'
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Build
+        run: |
+          yarn install
+          yarn run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          force_orphan: true
