@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "基于webpack5，ts，vue3,element-plus的脚手架",
   "main": "index.js",
+  "homepage":"https://${github username}.github.io/${repo name}",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV='production' webpack --config build/webpack.prod.js",
