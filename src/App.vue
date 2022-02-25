@@ -1,33 +1,42 @@
-<template>
-    <div>
-        <p class="title">{{title}}</p>
-        <audio src="./assets/4秒.mp3">
-            您的浏览器不支持 audio 标签。
-        </audio>
-         <!-- <video width="320" height="240" controls>
-            <source src="./assets/4秒.mp4" type="video/mp4">
-        </video> -->
-        <video width="320" height="240" controls>
-            <source src="./assets/VID_20210911_155955.mp4" type="video/mp4">
-        </video>
-        <svg-icon icon-class="add"></svg-icon>
-    </div>
-</template>
-<script>
-import { defineComponent, ref } from 'vue';
-export default defineComponent({
-    setup() {
-        const title = ref('渐进式JavaScript 框架');
 
-        return {
-            title
-        }
+<template>
+  <div id="app" >
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+import { defineComponent, ref } from 'vue'
+export default defineComponent({
+  name: 'App',
+  components: {
+  },
+  setup() {
+    const test = ref('HHHH')
+    return {
+      test
     }
+  }
 })
 </script>
-<style scoped lang="scss">
-.title{
-    color: $blue;
-    font-size: 16px;
+
+<style lang="scss">
+.size {
+  width: 100%;
+  height: 100%;
+}
+html,body {
+  margin: 0;
+  padding: 0;
+  color: $fontColor;
+}
+
+.grey__mode {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
 }
 </style>
