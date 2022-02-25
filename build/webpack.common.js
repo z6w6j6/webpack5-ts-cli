@@ -6,7 +6,7 @@ const { VueLoaderPlugin } = require('vue-loader/dist/index')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')// 提取css到单独的文件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
+// const ESLintPlugin = require('eslint-webpack-plugin')
 
 const resolve = function(val) {
   return path.resolve(__dirname, val)
@@ -144,11 +144,11 @@ module.exports = {
       $: 'jquery'
       // jQuery: 'jquery',
     }),
-    new ESLintPlugin({
-      fix: true,
-      extensions: ['js', 'json', 'coffee', 'vue'],
-      exclude: '/node_modules/'// 指定不进行校验的文件夹
-    })
+    // new ESLintPlugin({
+    //   fix: true,
+    //   extensions: ['js', 'json', 'coffee', 'vue'],
+    //   exclude: '/node_modules/'// 指定不进行校验的文件夹
+    // })
   ],
   externals: { // 通过script引入了jq，也通过import 引入使用jq会多打包一次
     jquery: 'jQuery'
