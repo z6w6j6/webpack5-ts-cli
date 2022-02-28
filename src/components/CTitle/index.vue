@@ -54,7 +54,7 @@ export default {
       margin-right: 5px;
       margin-bottom: 2px;
     }
-    &:before{//ie不兼容
+    &:before{
       content:'';
       height:8px;
       width:8px;

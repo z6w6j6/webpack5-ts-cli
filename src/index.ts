@@ -9,13 +9,13 @@ const app = createApp(App) // 通过 createApp 初始化 app
 // registerEleCom(app)
 app.use(ElementPlus, { size: 'small', zIndex: 3000 })
 
-import { registerCom } from './components/index' // 引入全局组件
+import { registerCom } from './components/index.ts' // 引入全局组件
 registerCom(app)
 
-import router from './router/index'
+import router from './router/index.ts'
 app.use(router)
 
-import store from './store'
+import store from './store/index.ts'
 app.use(store)
 
 app.mount('#root') // 将页面挂载到 root 节点
