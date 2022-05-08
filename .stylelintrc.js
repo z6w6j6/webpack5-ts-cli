@@ -3,7 +3,11 @@ module.exports = {
   overrides: [{
     'files': ['**/*.scss'],
     'customSyntax': 'postcss-sass'
-  }],
+  },
+  {
+    files: ["**/*.{html,vue}"],
+    customSyntax: "postcss-html"
+  },],
   rules: {
     'rule-empty-line-before': null,
     'font-family-no-missing-generic-family-keyword': null,
