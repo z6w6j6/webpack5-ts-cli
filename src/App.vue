@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue'
 export default defineComponent({
   name: 'App',
   components: {
   },
-  setup() {
+  setup () {
     const test = ref('HHHH')
     return {
       test
@@ -32,7 +32,7 @@ html,body {
 }
 
 .grey__mode {
-  -webkit-filter: grayscale(100%);
+                    -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -o-filter: grayscale(100%);
