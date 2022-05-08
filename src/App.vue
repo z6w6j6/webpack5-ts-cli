@@ -11,7 +11,7 @@ export default defineComponent({
   name: 'App',
   components: {
   },
-  setup() {
+  setup () {
     const test = ref('HHHH')
     return {
       test
