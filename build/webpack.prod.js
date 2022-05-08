@@ -1,10 +1,10 @@
-// const TerserPlugin = require('terser-webpack-plugin') // js压缩
+const TerserPlugin = require('terser-webpack-plugin') // js压缩
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // css压缩
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
 
-module.exports = merge(common, {
-  mode: 'production',
+const bundleAnalyzerReport = process.env.analyzer
+let webpackConfig = merge(common, {
   entry: './src/index.ts',
   output: {
     path: __dirname + '/../dist',
@@ -19,31 +19,38 @@ module.exports = merge(common, {
     // 通过配置 optimization.runtimeChunk = true，为运行时代码创建一个额外的 chunk，减少 entry chunk 体积，提高性能。
     // runtimeChunk: true,
     minimizer: [
-      // new TerserPlugin({
-      //   parallel: 4,
-      //   terserOptions: {
-      //     parse: {
-      //       ecma: 8,
-      //     },
-      //     compress: {
-      //       ecma: 5,
-      //       warnings: false,
-      //       comparisons: false,
-      //       inline: 2,
-      //     },
-      //     mangle: {
-      //       safari10: true,
-      //     },
-      //     output: {
-      //       ecma: 5,
-      //       comments: false,
-      //       ascii_only: true,
-      //     },
-      //   },
-      // }),
+      // js压缩
+      new TerserPlugin(
+     {
+      terserOptions: {
+        // 生产环境自动删除console
+        compress: {
+          drop_debugger: true,
+          drop_console: true,
+          pure_funcs: ['console.log']
+        }
+      },
+      parallel: true,
+      exclude: /[\\/]node_modules[\\/]/
+     }
+      ),
+      // css压缩
       new CssMinimizerPlugin({
         parallel: 4,
       }),
     ],
   },
 })
+// 是否开启打包体积预览
+if (bundleAnalyzerReport) {
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+
+  const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+  const smp = new SpeedMeasurePlugin();
+  webpackConfig = smp.wrap(webpackConfig)
+
+}
+
+
+module.exports  = webpackConfig

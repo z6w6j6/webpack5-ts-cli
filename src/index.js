@@ -12,12 +12,11 @@
 //   previewImg({ src: e.target.src });
 // };
 import { createApp } from 'vue' // Vue 3.x 引入 vue 的形式
-import App from './App.vue' // 引入 APP 页面组建
-const app = createApp(App) // 通过 createApp 初始化 app
+import App from './App.vue' // 通过 createApp 初始化 app
 // import './components/index' // 引入全局组件
-import SvgIcon from './components/SvgIcon/index.vue'// svg组件
+import SvgIcon from './components/SvgIcon/index.vue' // 引入 APP 页面组建
+const app = createApp(App)// svg组件
 
 // register globally
 app.component('svg-icon', SvgIcon)
 app.mount('#root') // 将页面挂载到 root 节点
-

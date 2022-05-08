@@ -58,7 +58,7 @@ const renderRoutes = [
 ]
 // 放到vuex上
 $store.dispatch('setRoutes', renderRoutes)
-// 路由降级,使用共同的layout
+// 使用共同的layout
 const dealRoutes = (list) => {
   const routes = [{
     path: '/',

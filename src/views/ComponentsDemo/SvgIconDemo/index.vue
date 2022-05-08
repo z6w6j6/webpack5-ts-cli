@@ -1,7 +1,6 @@
 <template>
   <div class='content'>
     <div class="message">
-
       <div>
          <c-title>  使用方式：</c-title>
         <p>在对应文件夹中添加需要使用的svg文件</p>
@@ -19,6 +18,7 @@
           <svg-icon icon-class="bottom" class="icon"></svg-icon>bottom
         </div>
       </div>
+      
   </div>
 </template>
 
@@ -42,7 +42,7 @@ export default defineComponent({
 code{
   background: #eee;
   padding: 10px;
-
+  transition:all 3s;
 }
 .icon{
   color: $mainColor;

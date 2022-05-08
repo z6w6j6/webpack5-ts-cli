@@ -1,0 +1,3 @@
+#### tip1
+postcss-loader的postcss.config.js文件配置生效需要在配置.browserslistrc文件，里面配置需要适配的浏览器方可生效，，否则postcss.config.js文件不会生效，需要配置webpack的loader里的配置项上
+.browserslistrc这个文件的内容也可以直接设置在package.json文件上，属性名browserslistrc，属性值.browserslistrc文件里的内容
