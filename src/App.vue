@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'App',
   components: {
   },
-  setup () {
+  setup() {
     const test = ref('HHHH')
     return {
       test

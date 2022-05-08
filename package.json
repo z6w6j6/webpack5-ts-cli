@@ -84,16 +84,8 @@
     "semi": false,
     "printWidth": 100
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
- },
- "lint-staged": {
-    "src/**/*.{js,vue}": [
-      "eslint --fix --ext .js,.vue",
-      "git add"
-    ]
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --cache-location .husky/_/.eslintcache --fix",
+    "*.{css,scss}": "stylelint --custom-syntax postcss-sass --fix"
   }
 }
