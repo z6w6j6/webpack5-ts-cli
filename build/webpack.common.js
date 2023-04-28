@@ -16,7 +16,7 @@ const resolve = function(val) {
 }
 module.exports = {
   mode,
-  entry: resolve('../src/index.ts'),
+//   entry: resolve('../src/index.ts'),
   output: {
     path: resolve('../dist'),
     filename: '[name].bundle.js'
